@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.7-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'groovy'
 }
 
 group = 'com.bochi'
@@ -34,6 +35,14 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+	testImplementation 'org.codehaus.groovy:groovy-all:3.0.8'
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.13.3'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.3'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.6'
+	compileOnly group: 'org.sonarsource.sonarqube', name: 'sonar-plugin-api', version: '9.3.0.51899'
 }
 
 tasks.named('test') {
