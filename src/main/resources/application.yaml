@@ -1,0 +1,30 @@
+server:
+  port: ${PORT:8062}
+  error:
+    include-message: ALWAYS
+
+spring:
+  profiles:
+    active: ${ENV}
+  datasource:
+    url: jdbc:postgresql://${FAIR_API_DB_HOST:localhost}:${FAIR_API_DB_PORT:5433}/${FAIR_API_DB_NAME:fair-api}
+    username: ${FAIR_API_DB_USER:admin}
+    password: ${FAIR_API_DB_PASS:admin}
+    jpa:
+      hibernate:
+        ddl-auto: validate
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+          show_sql: true
+          jdbc:
+            lob:
+              non_contextual_creation: true
+    servlet:
+      multipart:
+        max-file-size: 5MB
+        max-request-size: 5MB
+    flyway:
+      enabled: true
+      baseline-on-migrate: true
