@@ -60,6 +60,17 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
+     *
+     * @param fairName nome da feira
+     * @return objeto feira
+     */
+    @Override
+    public Fair getByName(String fairName) {
+        return fairRepository.findOne(active(Boolean.TRUE).and(fairName(fairName)))
+                .orElseThrow(() -> new ResourceNotFoundException("Feira não encontrada para o nome: " + fairName));
+    }
+
+    /**
      * *
      * @param pageable objeto de paginacao
      * @param filter filtros da feira
