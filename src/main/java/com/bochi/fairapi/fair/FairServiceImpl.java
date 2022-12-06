@@ -60,6 +60,17 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
+     *
+     * @param fairName nome da feira
+     * @return objeto feira
+     */
+    @Override
+    public Fair getByName(String fairName) {
+        return fairRepository.findOne(active(Boolean.TRUE).and(fairName(fairName)))
+                .orElseThrow(() -> new ResourceNotFoundException("Feira não encontrada para o nome: " + fairName));
+    }
+
+    /**
      * *
      * @param pageable objeto de paginacao
      * @param filter filtros da feira
@@ -160,63 +171,63 @@ public class FairServiceImpl implements FairService {
         Fair fair = this.getByRegisterCode(registerCode);
         assert fair != null;
 
-        if (partialDTO.getKey().equalsIgnoreCase("longitude")) {
+        if (partialDTO.getField().equalsIgnoreCase("longitude")) {
             fair.setLon(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("latitude")) {
+        if (partialDTO.getField().equalsIgnoreCase("latitude")) {
             fair.setLat(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("setor_censitario")) {
+        if (partialDTO.getField().equalsIgnoreCase("setor_censitario")) {
             fair.setCensusSector(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("area_ponderada")) {
+        if (partialDTO.getField().equalsIgnoreCase("area_ponderada")) {
             fair.setWightedArea(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("cod_distrito")) {
+        if (partialDTO.getField().equalsIgnoreCase("cod_distrito")) {
             fair.setDistrictCode(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("distrito")) {
+        if (partialDTO.getField().equalsIgnoreCase("distrito")) {
             fair.setDistrict(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("cod_subprefeitura")) {
+        if (partialDTO.getField().equalsIgnoreCase("cod_subprefeitura")) {
             fair.setSubPrefectureCode(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("subprefeitura")) {
+        if (partialDTO.getField().equalsIgnoreCase("subprefeitura")) {
             fair.setSubPrefecture(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("regiao_5")) {
+        if (partialDTO.getField().equalsIgnoreCase("regiao_5")) {
             fair.setRegion5(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("regiao_8")) {
+        if (partialDTO.getField().equalsIgnoreCase("regiao_8")) {
             fair.setRegion8(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("nome_feira")) {
+        if (partialDTO.getField().equalsIgnoreCase("nome_feira")) {
             fair.setLon(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("logradouro")) {
+        if (partialDTO.getField().equalsIgnoreCase("logradouro")) {
             fair.setAddress(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("numero")) {
+        if (partialDTO.getField().equalsIgnoreCase("numero")) {
             fair.setNumber(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("bairro")) {
+        if (partialDTO.getField().equalsIgnoreCase("bairro")) {
             fair.setNeighbourhood(partialDTO.getValue());
         }
 
-        if (partialDTO.getKey().equalsIgnoreCase("referencia")) {
+        if (partialDTO.getField().equalsIgnoreCase("referencia")) {
             fair.setRefPoint(partialDTO.getValue());
         }
 

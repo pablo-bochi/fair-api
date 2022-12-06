@@ -11,6 +11,7 @@ public interface FairService {
 
     Fair create(FairCreateDTO createDTO);
     Fair getByRegisterCode(String registerCode);
+    Fair getByName(String fairName);
     void delete(String registerCode);
     void softDelete(String registerCode);
     Fair update(String registerCode, FairUpdateDTO fairUpdateDTO);
