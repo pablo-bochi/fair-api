@@ -2,12 +2,14 @@ package com.bochi.fairapi.fair.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /**
  * The type Fair update dto.
  */
 @Data
+@Builder
 @AllArgsConstructor
 public class FairUpdateDTO {
 

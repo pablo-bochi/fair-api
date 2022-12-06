@@ -2,12 +2,14 @@ package com.bochi.fairapi.fair.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /**
  * The type Fair create dto.
  */
 @Data
+@Builder
 @AllArgsConstructor
 public class FairCreateDTO {
 
