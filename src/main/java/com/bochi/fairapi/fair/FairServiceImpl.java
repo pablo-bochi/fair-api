@@ -96,15 +96,6 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
-     * *
-     * @param registerCode codigo de registro
-     * @return optional de feira
-     */
-    public Optional<Fair> findByRegisterCode(String registerCode) {
-        return fairRepository.findByRegisterCodeAndActive(registerCode, Boolean.TRUE);
-    }
-
-    /**
      * Hard delete - remover o registro de uma feira do banco*
      * @param registerCode Código de registro
      */
@@ -253,7 +244,7 @@ public class FairServiceImpl implements FairService {
      * @param fair objeto feira
      */
     private void validateUnique(Fair fair) {
-        this.findByRegisterCode(fair.getRegisterCode()).ifPresent(it -> {
+        fairRepository.findByRegisterCodeAndActive(fair.getRegisterCode(), Boolean.TRUE).ifPresent(it -> {
             throw new ResourceAlreadyExistsException("Feira já existe para o registro: " + fair.getRegisterCode());
         });
     }

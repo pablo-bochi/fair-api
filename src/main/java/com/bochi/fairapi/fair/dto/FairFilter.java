@@ -1,13 +1,17 @@
 package com.bochi.fairapi.fair.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * The type Fair filter.
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class FairFilter {
 
     private String district;
