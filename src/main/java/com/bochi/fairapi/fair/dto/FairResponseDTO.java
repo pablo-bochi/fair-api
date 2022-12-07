@@ -5,12 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * The type Fair response dto.
  */
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class FairResponseDTO {
 

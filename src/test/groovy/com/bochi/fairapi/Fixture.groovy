@@ -107,7 +107,7 @@ class Fixture {
 
     static FairPartialDTO partialDTO() {
         return FairPartialDTO.builder()
-                .field("neighbourhood")
+                .field("bairro")
                 .value("VL PRUDENTE")
                 .build()
     }

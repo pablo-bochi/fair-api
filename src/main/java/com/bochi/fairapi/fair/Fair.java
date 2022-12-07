@@ -3,14 +3,11 @@ package com.bochi.fairapi.fair;
 import com.bochi.fairapi.fair.dto.FairCreateDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import java.util.Objects;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -24,6 +21,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @AllArgsConstructor
 @Builder(toBuilder = true)
+@EqualsAndHashCode
 public class Fair {
 
     @Id
@@ -83,19 +81,6 @@ public class Fair {
     @Column(name = "ativo")
     private Boolean active = Boolean.TRUE;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Fair fair = (Fair) o;
-        return id != null && Objects.equals(id, fair.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
-
     /**
      * Of fair.
      *
@@ -115,6 +100,7 @@ public class Fair {
                 .region5(createDTO.getRegion5())
                 .region8(createDTO.getRegion8())
                 .fairName(createDTO.getFairName())
+                .registerCode(createDTO.getRegisterCode())
                 .address(createDTO.getAddress())
                 .number(createDTO.getNumber())
                 .neighbourhood(createDTO.getNeighbourhood())

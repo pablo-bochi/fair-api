@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * The type Fair create dto.
  */
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class FairCreateDTO {
 

@@ -30,7 +30,6 @@ class FairRestServiceTest extends Specification {
     @Shared FairCreateDTO createDTO = Fixture.createDTO()
     @Shared Fair fair = Fixture.fair()
     @Shared FairResponseDTO responseDTO = Fixture.responseDTO()
-    @Shared FairFilter filter = Fixture.fairFilter()
     @Shared FairUpdateDTO updateDTO = Fixture.updateDTO()
     @Shared Fair fairUpdated = Fixture.fairUpdated()
     @Shared FairPartialDTO partialDTO = Fixture.partialDTO()
@@ -71,6 +70,9 @@ class FairRestServiceTest extends Specification {
     }
 
     def "should find fair page by filter with success" () {
+        given:
+        def filter = new FairFilter()
+
         when:
         def response = mvc.perform(get(baseUrl, filter.district, filter.fairName, filter.neighbourhood, filter.region5)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -81,7 +83,7 @@ class FairRestServiceTest extends Specification {
 
         and:
         response.andExpect(status().isOk())
-                .andReturn().response.contentAsString.contains(mapper.writeValueAsString(new PageImpl<>(asList(fair))))
+                .andReturn().response.contentAsString.contains(mapper.writeValueAsString(new PageImpl<>(asList(FairResponseDTO.of(fair)))))
     }
 
     def "should update fair with success" () {
@@ -101,7 +103,7 @@ class FairRestServiceTest extends Specification {
 
     def "should partially update fair with success" () {
         when:
-        def respose = mvc.perform(patch(baseUrl + "/{registerCode}", "4041-0")
+        def response = mvc.perform(patch(baseUrl + "/{registerCode}", "4041-0")
                 .content(mapper.writeValueAsString(partialDTO))
                 .contentType(MediaType.APPLICATION_JSON))
 
@@ -110,7 +112,7 @@ class FairRestServiceTest extends Specification {
         0 * _
 
         and:
-        respose.andExpect(status().isOk())
+        response.andExpect(status().isOk())
                 .andReturn().response.contentAsString.contains(mapper.writeValueAsString(FairResponseDTO.of(fairPartiallyUpdated)))
     }
 
