@@ -21,6 +21,6 @@ CREATE TABLE public.fair
     numero varchar(5),
     bairro varchar(20),
     referencia varchar(24),
-    ativo boolean default true
+    ativo boolean default true,
     CONSTRAINT fair_pkey PRIMARY KEY (id)
 );

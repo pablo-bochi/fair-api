@@ -4,7 +4,7 @@ services:
     image: fair-api:latest
     container_name: fair-api
     ports:
-      - 8062:8062
+      - "8062:8062"
     environment:
       PORT: 8062
       ENV: local
@@ -17,11 +17,11 @@ services:
     image: postgres:13-alpine
     container_name: fair-api-db
     ports:
-      - 5433:5432
+      - "5433:5432"
     environment:
       - POSTGRES_USER=admin
-      - POSTGRES_PASS=admin
-      - POSTGRES_DBNAME=fair-api
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=fair-api
     volumes:
       - fair-api-volume:/var/lib/postgresql
 volumes:

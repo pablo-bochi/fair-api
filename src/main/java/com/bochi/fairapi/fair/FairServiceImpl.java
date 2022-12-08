@@ -19,7 +19,6 @@ import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.bochi.fairapi.fair.FairSpecification.*;
@@ -39,8 +38,10 @@ public class FairServiceImpl implements FairService {
     @Override
     public Fair create(FairCreateDTO createDTO) {
         Fair fair = Fair.of(createDTO);
+        log.info("Validating unique fair for register={}", createDTO.getRegisterCode());
         validateUnique(fair);
         try {
+            log.info("Saving new fair");
             return fairRepository.save(fair);
         } catch (ConstraintViolationException e) {
             List<FieldError> errors = formatConstrainsViolation(e);
@@ -55,6 +56,7 @@ public class FairServiceImpl implements FairService {
      */
     @Override
     public Fair getByRegisterCode(String registerCode) {
+        log.info("Searching fair by register code={}", registerCode);
         return fairRepository.findByRegisterCodeAndActive(registerCode, Boolean.TRUE)
                 .orElseThrow(() -> new ResourceNotFoundException("Feira não encontrada para registro: " + registerCode));
     }
@@ -66,6 +68,7 @@ public class FairServiceImpl implements FairService {
      */
     @Override
     public Fair getByName(String fairName) {
+        log.info("Searching fair by name={}", fairName);
         return fairRepository.findOne(active(Boolean.TRUE).and(fairName(fairName)))
                 .orElseThrow(() -> new ResourceNotFoundException("Feira não encontrada para o nome: " + fairName));
     }
@@ -80,17 +83,25 @@ public class FairServiceImpl implements FairService {
     public Page<Fair> findAllByFilter(Pageable pageable, FairFilter filter) {
         Specification<Fair> specification = active(Boolean.TRUE);
 
-        if (Objects.nonNull(filter.getDistrict()))
+        if (Objects.nonNull(filter.getDistrict())) {
+            log.info("Filtering by district");
             specification = specification.and(district(filter.getDistrict()));
+        }
 
-        if (Objects.nonNull(filter.getRegion5()))
+        if (Objects.nonNull(filter.getRegion5())) {
+            log.info("Filtering by region5");
             specification = specification.and(region5(filter.getRegion5()));
+        }
 
-        if (Objects.nonNull(filter.getFairName()))
+        if (Objects.nonNull(filter.getFairName())) {
+            log.info("Filtering by name");
             specification = specification.and(fairName(filter.getFairName()));
+        }
 
-        if (Objects.nonNull(filter.getNeighbourhood()))
+        if (Objects.nonNull(filter.getNeighbourhood())) {
+            log.info("Filtering by neighbourhood");
             specification = specification.and(neighbourhood(filter.getNeighbourhood()));
+        }
 
         return fairRepository.findAll(specification, pageable);
     }
@@ -102,6 +113,7 @@ public class FairServiceImpl implements FairService {
     @Override
     public void delete(String registerCode) {
         Fair fair = this.getByRegisterCode(registerCode);
+        log.info("Deleting fair with register code={}", registerCode);
         fairRepository.delete(fair);
     }
 
@@ -112,6 +124,7 @@ public class FairServiceImpl implements FairService {
     @Override
     public void softDelete(String registerCode) {
         Fair fair = this.getByRegisterCode(registerCode);
+        log.info("Inactivating fair with register code={}", registerCode);
         fairRepository.save(fair.toBuilder()
                 .active(Boolean.FALSE)
                 .build());
@@ -128,6 +141,7 @@ public class FairServiceImpl implements FairService {
         Fair fair = this.getByRegisterCode(registerCode);
         assert fair != null;
         try {
+            log.info("Updating fair with register code={}", registerCode);
             return fairRepository.save(fair.toBuilder()
                     .lon(fairUpdateDTO.getLon())
                     .lat(fairUpdateDTO.getLat())
@@ -162,63 +176,78 @@ public class FairServiceImpl implements FairService {
         Fair fair = this.getByRegisterCode(registerCode);
         assert fair != null;
 
-        if (partialDTO.getField().equalsIgnoreCase("longitude")) {
+        if (partialDTO.getField().equalsIgnoreCase("LONG")) {
+            log.info("Updating lon");
             fair.setLon(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("latitude")) {
+        if (partialDTO.getField().equalsIgnoreCase("LAT")) {
+            log.info("Updating lat");
             fair.setLat(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("setor_censitario")) {
+        if (partialDTO.getField().equalsIgnoreCase("SETCENS")) {
+            log.info("Updating censusSector");
             fair.setCensusSector(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("area_ponderada")) {
+        if (partialDTO.getField().equalsIgnoreCase("AREAP")) {
+            log.info("Updating weightedArea");
             fair.setWightedArea(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("cod_distrito")) {
+        if (partialDTO.getField().equalsIgnoreCase("CODDIST")) {
+            log.info("Updating districtCode");
             fair.setDistrictCode(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("distrito")) {
+        if (partialDTO.getField().equalsIgnoreCase("DISTRITO")) {
+            log.info("Updating district");
             fair.setDistrict(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("cod_subprefeitura")) {
+        if (partialDTO.getField().equalsIgnoreCase("CODSUBPREF")) {
+            log.info("Updating subPrefectureCode");
             fair.setSubPrefectureCode(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("subprefeitura")) {
+        if (partialDTO.getField().equalsIgnoreCase("SUBPREF")) {
+            log.info("Updating subPrefecture");
             fair.setSubPrefecture(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("regiao_5")) {
+        if (partialDTO.getField().equalsIgnoreCase("REGIAO5")) {
+            log.info("Updating region5");
             fair.setRegion5(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("regiao_8")) {
+        if (partialDTO.getField().equalsIgnoreCase("REGIAO8")) {
+            log.info("Updating region8");
             fair.setRegion8(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("nome_feira")) {
+        if (partialDTO.getField().equalsIgnoreCase("NOME_FEIRA")) {
+            log.info("Updating fairName");
             fair.setLon(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("logradouro")) {
+        if (partialDTO.getField().equalsIgnoreCase("LOGRADOURO")) {
+            log.info("Updating address");
             fair.setAddress(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("numero")) {
+        if (partialDTO.getField().equalsIgnoreCase("NUMERO")) {
+            log.info("Updating number");
             fair.setNumber(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("bairro")) {
+        if (partialDTO.getField().equalsIgnoreCase("BAIRRO")) {
+            log.info("Updating neighbourhood");
             fair.setNeighbourhood(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("referencia")) {
+        if (partialDTO.getField().equalsIgnoreCase("REFERENCIA")) {
+            log.info("Updating refPoint");
             fair.setRefPoint(partialDTO.getValue());
         }
 
@@ -244,6 +273,7 @@ public class FairServiceImpl implements FairService {
      * @param fair objeto feira
      */
     private void validateUnique(Fair fair) {
+        log.info("Searching fair by register code={}", fair.getRegisterCode());
         fairRepository.findByRegisterCodeAndActive(fair.getRegisterCode(), Boolean.TRUE).ifPresent(it -> {
             throw new ResourceAlreadyExistsException("Feira já existe para o registro: " + fair.getRegisterCode());
         });
