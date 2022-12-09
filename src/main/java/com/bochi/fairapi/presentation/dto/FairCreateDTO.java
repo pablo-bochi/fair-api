@@ -1,4 +1,4 @@
-package com.bochi.fairapi.fair.dto;
+package com.bochi.fairapi.presentation.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

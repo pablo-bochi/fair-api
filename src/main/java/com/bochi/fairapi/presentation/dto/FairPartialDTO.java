@@ -1,4 +1,4 @@
-package com.bochi.fairapi.fair.dto;
+package com.bochi.fairapi.presentation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

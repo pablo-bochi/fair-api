@@ -1,5 +1,7 @@
-package com.bochi.fairapi.fair;
+package com.bochi.fairapi.domain;
 
+import com.bochi.fairapi.domain.Fair;
+import com.bochi.fairapi.domain.Fair_;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
@@ -9,17 +11,6 @@ import org.springframework.data.jpa.domain.Specification;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FairSpecification {
-
-    /**
-     * Active specification.
-     *
-     * @param active the active
-     * @return the specification
-     */
-    public static Specification<Fair> active(Boolean active) {
-        return (root, query, criteriaBuilder) ->
-                criteriaBuilder.equal(root.get(Fair_.active), active);
-    }
 
     /**
      * District specification.

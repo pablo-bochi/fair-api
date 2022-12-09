@@ -1,5 +1,6 @@
-package com.bochi.fairapi.fair;
+package com.bochi.fairapi.domain;
 
+import com.bochi.fairapi.domain.Fair;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

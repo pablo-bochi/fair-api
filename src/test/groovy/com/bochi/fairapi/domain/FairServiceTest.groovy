@@ -1,13 +1,17 @@
-package com.bochi.fairapi.fair
+package com.bochi.fairapi.domain
 
 import com.bochi.fairapi.Fixture
 import com.bochi.fairapi.core.exception.InvalidInputException
 import com.bochi.fairapi.core.exception.ResourceAlreadyExistsException
 import com.bochi.fairapi.core.exception.ResourceNotFoundException
-import com.bochi.fairapi.fair.dto.FairCreateDTO
-import com.bochi.fairapi.fair.dto.FairFilter
-import com.bochi.fairapi.fair.dto.FairPartialDTO
-import com.bochi.fairapi.fair.dto.FairUpdateDTO
+import com.bochi.fairapi.domain.Fair
+import com.bochi.fairapi.domain.FairRepository
+import com.bochi.fairapi.domain.FairServiceImpl
+import com.bochi.fairapi.presentation.dto.FairCreateDTO
+import com.bochi.fairapi.presentation.dto.FairFilter
+import com.bochi.fairapi.presentation.dto.FairPartialDTO
+import com.bochi.fairapi.presentation.dto.FairUpdateDTO
+import com.bochi.fairapi.presentation.FairService
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import spock.lang.Shared
@@ -140,21 +144,6 @@ class FairServiceTest extends Specification {
         then:
         1 * fairRepository.findByRegisterCodeAndActive("4041-0", Boolean.TRUE) >> Optional.of(fair)
         1 * fairRepository.delete(fair)
-        0 * _
-    }
-
-    def "should soft delete fair with success" () {
-        given:
-        FairService service = getService()
-
-        when:
-        service.softDelete("4041-0")
-
-        then:
-        1 * fairRepository.findByRegisterCodeAndActive("4041-0", Boolean.TRUE) >> Optional.of(fair)
-        1 * fairRepository.save(fair.toBuilder()
-                .active(Boolean.FALSE)
-                .build())
         0 * _
     }
 
