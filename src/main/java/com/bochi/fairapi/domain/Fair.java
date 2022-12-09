@@ -1,6 +1,6 @@
-package com.bochi.fairapi.fair;
+package com.bochi.fairapi.domain;
 
-import com.bochi.fairapi.fair.dto.FairCreateDTO;
+import com.bochi.fairapi.presentation.dto.FairCreateDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -76,10 +76,6 @@ public class Fair {
 
     @Column(name = "referencia")
     private String refPoint;
-
-    @Builder.Default
-    @Column(name = "ativo")
-    private Boolean active = Boolean.TRUE;
 
     /**
      * Of fair.

@@ -1,11 +1,11 @@
 package com.bochi.fairapi
 
-import com.bochi.fairapi.fair.Fair
-import com.bochi.fairapi.fair.dto.FairCreateDTO
-import com.bochi.fairapi.fair.dto.FairFilter
-import com.bochi.fairapi.fair.dto.FairPartialDTO
-import com.bochi.fairapi.fair.dto.FairResponseDTO
-import com.bochi.fairapi.fair.dto.FairUpdateDTO
+import com.bochi.fairapi.domain.Fair
+import com.bochi.fairapi.presentation.dto.FairCreateDTO
+import com.bochi.fairapi.presentation.dto.FairFilter
+import com.bochi.fairapi.presentation.dto.FairPartialDTO
+import com.bochi.fairapi.presentation.dto.FairResponseDTO
+import com.bochi.fairapi.presentation.dto.FairUpdateDTO
 
 class Fixture {
 
@@ -27,7 +27,6 @@ class Fixture {
                 .number("S/N")
                 .neighbourhood("VL FORMOSA")
                 .refPoint("TV RUA PRETORIA")
-                .active(Boolean.TRUE)
                 .build()
     }
 
@@ -49,7 +48,6 @@ class Fixture {
                 .neighbourhood("VL PRUDENTE")
                 .refPoint("BABAU DO PARQUE")
                 .registerCode("4041-0")
-                .active(Boolean.TRUE)
                 .build()
     }
 
@@ -71,7 +69,6 @@ class Fixture {
                 .number("S/N")
                 .neighbourhood("VL PRUDENTE")
                 .refPoint("TV RUA PRETORIA")
-                .active(Boolean.TRUE)
                 .build()
     }
 

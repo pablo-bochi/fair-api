@@ -1,7 +1,7 @@
-package com.bochi.fairapi.fair.web;
+package com.bochi.fairapi.presentation.web;
 
-import com.bochi.fairapi.fair.FairService;
-import com.bochi.fairapi.fair.dto.*;
+import com.bochi.fairapi.presentation.FairService;
+import com.bochi.fairapi.presentation.dto.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +11,7 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/fair/api")
-public class FairRestService {
+public class FairRestController {
 
     private final FairService fairService;
 
@@ -64,12 +64,6 @@ public class FairRestService {
     @DeleteMapping(value = "/{registerCode}", produces = "application/json")
     void delete(@PathVariable String registerCode) {
         fairService.delete(registerCode);
-    }
-
-    @ResponseStatus(OK)
-    @DeleteMapping(value = "/{registerCode}/inactivate", produces = "application/json")
-    void inactivate(@PathVariable String registerCode) {
-        fairService.softDelete(registerCode);
     }
 
 }

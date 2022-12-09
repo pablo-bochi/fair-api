@@ -1,13 +1,14 @@
-package com.bochi.fairapi.fair;
+package com.bochi.fairapi.domain;
 
 import com.bochi.fairapi.core.exception.FieldError;
 import com.bochi.fairapi.core.exception.InvalidInputException;
 import com.bochi.fairapi.core.exception.ResourceAlreadyExistsException;
 import com.bochi.fairapi.core.exception.ResourceNotFoundException;
-import com.bochi.fairapi.fair.dto.FairCreateDTO;
-import com.bochi.fairapi.fair.dto.FairPartialDTO;
-import com.bochi.fairapi.fair.dto.FairUpdateDTO;
-import com.bochi.fairapi.fair.dto.FairFilter;
+import com.bochi.fairapi.presentation.dto.FairCreateDTO;
+import com.bochi.fairapi.presentation.dto.FairPartialDTO;
+import com.bochi.fairapi.presentation.dto.FairUpdateDTO;
+import com.bochi.fairapi.presentation.dto.FairFilter;
+import com.bochi.fairapi.presentation.FairService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -21,7 +22,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.bochi.fairapi.fair.FairSpecification.*;
+import static com.bochi.fairapi.domain.FairSpecification.*;
 
 @Slf4j
 @Service
@@ -69,7 +70,7 @@ public class FairServiceImpl implements FairService {
     @Override
     public Fair getByName(String fairName) {
         log.info("Searching fair by name={}", fairName);
-        return fairRepository.findOne(active(Boolean.TRUE).and(fairName(fairName)))
+        return fairRepository.findOne(fairName(fairName))
                 .orElseThrow(() -> new ResourceNotFoundException("Feira não encontrada para o nome: " + fairName));
     }
 
@@ -81,26 +82,32 @@ public class FairServiceImpl implements FairService {
      */
     @Override
     public Page<Fair> findAllByFilter(Pageable pageable, FairFilter filter) {
-        Specification<Fair> specification = active(Boolean.TRUE);
+        Specification<Fair> specification = null;
 
         if (Objects.nonNull(filter.getDistrict())) {
             log.info("Filtering by district");
-            specification = specification.and(district(filter.getDistrict()));
+            specification = district(filter.getDistrict());
         }
 
         if (Objects.nonNull(filter.getRegion5())) {
             log.info("Filtering by region5");
-            specification = specification.and(region5(filter.getRegion5()));
+            specification = Objects.isNull(specification) ?
+                    region5(filter.getRegion5()) :
+                    specification.and(region5(filter.getRegion5()));
         }
 
         if (Objects.nonNull(filter.getFairName())) {
             log.info("Filtering by name");
-            specification = specification.and(fairName(filter.getFairName()));
+            specification = Objects.isNull(specification) ?
+                    fairName(filter.getFairName()) :
+                    specification.and(fairName(filter.getFairName()));
         }
 
         if (Objects.nonNull(filter.getNeighbourhood())) {
             log.info("Filtering by neighbourhood");
-            specification = specification.and(neighbourhood(filter.getNeighbourhood()));
+            specification = Objects.isNull(specification) ?
+                    neighbourhood(filter.getNeighbourhood()) :
+                    specification.and(neighbourhood(filter.getNeighbourhood()));
         }
 
         return fairRepository.findAll(specification, pageable);
@@ -115,19 +122,6 @@ public class FairServiceImpl implements FairService {
         Fair fair = this.getByRegisterCode(registerCode);
         log.info("Deleting fair with register code={}", registerCode);
         fairRepository.delete(fair);
-    }
-
-    /**
-     * soft delete - inativar uma feira
-     * @param registerCode codigo de registro
-     */
-    @Override
-    public void softDelete(String registerCode) {
-        Fair fair = this.getByRegisterCode(registerCode);
-        log.info("Inactivating fair with register code={}", registerCode);
-        fairRepository.save(fair.toBuilder()
-                .active(Boolean.FALSE)
-                .build());
     }
 
     /**

@@ -1,13 +1,14 @@
-package com.bochi.fairapi.fair.web
+package com.bochi.fairapi.presentation.web
 
 import com.bochi.fairapi.Fixture
-import com.bochi.fairapi.fair.Fair
-import com.bochi.fairapi.fair.FairService
-import com.bochi.fairapi.fair.dto.FairCreateDTO
-import com.bochi.fairapi.fair.dto.FairFilter
-import com.bochi.fairapi.fair.dto.FairPartialDTO
-import com.bochi.fairapi.fair.dto.FairResponseDTO
-import com.bochi.fairapi.fair.dto.FairUpdateDTO
+import com.bochi.fairapi.domain.Fair
+import com.bochi.fairapi.presentation.FairService
+import com.bochi.fairapi.presentation.dto.FairCreateDTO
+import com.bochi.fairapi.presentation.dto.FairFilter
+import com.bochi.fairapi.presentation.dto.FairPartialDTO
+import com.bochi.fairapi.presentation.dto.FairResponseDTO
+import com.bochi.fairapi.presentation.dto.FairUpdateDTO
+import com.bochi.fairapi.presentation.web.FairRestController
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
@@ -20,7 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import static java.util.Arrays.asList
 
-class FairRestServiceTest extends Specification {
+class FairRestControllerTest extends Specification {
 
     @Shared MockMvc mvc
     @Shared FairService fairService
@@ -37,7 +38,7 @@ class FairRestServiceTest extends Specification {
 
     void setup() {
         fairService = Mock(FairService)
-        mvc = MockMvcBuilders.standaloneSetup(new FairRestService(fairService)).build()
+        mvc = MockMvcBuilders.standaloneSetup(new FairRestController(fairService)).build()
     }
 
     def "should create fair with success" () {
@@ -123,18 +124,6 @@ class FairRestServiceTest extends Specification {
 
         then:
         1 * fairService.delete("4041-0")
-
-        and:
-        response.andExpect(status().isOk())
-    }
-
-    def "should inactivate fair with success" () {
-        when:
-        def response = mvc.perform(delete(baseUrl + "/{registerCode}/inactivate", "4041-0")
-                .contentType(MediaType.APPLICATION_JSON))
-
-        then:
-        1 * fairService.softDelete("4041-0")
 
         and:
         response.andExpect(status().isOk())

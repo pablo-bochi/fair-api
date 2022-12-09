@@ -1,6 +1,6 @@
-package com.bochi.fairapi.fair.dto;
+package com.bochi.fairapi.presentation.dto;
 
-import com.bochi.fairapi.fair.Fair;
+import com.bochi.fairapi.domain.Fair;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
