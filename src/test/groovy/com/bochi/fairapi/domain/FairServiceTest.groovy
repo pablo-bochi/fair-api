@@ -4,9 +4,6 @@ import com.bochi.fairapi.Fixture
 import com.bochi.fairapi.core.exception.InvalidInputException
 import com.bochi.fairapi.core.exception.ResourceAlreadyExistsException
 import com.bochi.fairapi.core.exception.ResourceNotFoundException
-import com.bochi.fairapi.domain.Fair
-import com.bochi.fairapi.domain.FairRepository
-import com.bochi.fairapi.domain.FairServiceImpl
 import com.bochi.fairapi.presentation.dto.FairCreateDTO
 import com.bochi.fairapi.presentation.dto.FairFilter
 import com.bochi.fairapi.presentation.dto.FairPartialDTO
@@ -42,7 +39,7 @@ class FairServiceTest extends Specification {
         def result = service.create(createDTO)
 
         then:
-        1 * fairRepository.findByRegisterCodeAndActive("4041-0", Boolean.TRUE) >> Optional.empty()
+        1 * fairRepository.findByRegisterCode("4041-0") >> Optional.empty()
         1 * fairRepository.save(fair) >> fair
         0 * _
 
@@ -58,7 +55,7 @@ class FairServiceTest extends Specification {
         def result = service.create(createDTO)
 
         then:
-        1 * fairRepository.findByRegisterCodeAndActive("4041-0", Boolean.TRUE) >> Optional.of(fair)
+        1 * fairRepository.findByRegisterCode("4041-0") >> Optional.of(fair)
         ResourceAlreadyExistsException e = thrown(ResourceAlreadyExistsException)
 
         and:
@@ -73,7 +70,7 @@ class FairServiceTest extends Specification {
         def result = service.create(createDTO)
 
         then:
-        1 * fairRepository.findByRegisterCodeAndActive("4041-0", Boolean.TRUE) >> Optional.empty()
+        1 * fairRepository.findByRegisterCode("4041-0") >> Optional.empty()
         1 * fairRepository.save(fair) >> { throw new InvalidInputException("Invalid fair!!") }
         0 * _
 
@@ -92,7 +89,7 @@ class FairServiceTest extends Specification {
         def result = service.getByRegisterCode("4041-0")
 
         then:
-        1 * fairRepository.findByRegisterCodeAndActive("4041-0", Boolean.TRUE) >> Optional.of(fair)
+        1 * fairRepository.findByRegisterCode("4041-0") >> Optional.of(fair)
         0 * _
 
         and:
@@ -107,7 +104,7 @@ class FairServiceTest extends Specification {
         def result = service.getByRegisterCode("4041-0")
 
         then:
-        1 * fairRepository.findByRegisterCodeAndActive("4041-0", Boolean.TRUE) >> Optional.empty()
+        1 * fairRepository.findByRegisterCode("4041-0") >> Optional.empty()
         ResourceNotFoundException e = thrown(ResourceNotFoundException)
 
         and:
@@ -142,7 +139,7 @@ class FairServiceTest extends Specification {
         service.delete("4041-0")
 
         then:
-        1 * fairRepository.findByRegisterCodeAndActive("4041-0", Boolean.TRUE) >> Optional.of(fair)
+        1 * fairRepository.findByRegisterCode("4041-0") >> Optional.of(fair)
         1 * fairRepository.delete(fair)
         0 * _
     }
@@ -155,7 +152,7 @@ class FairServiceTest extends Specification {
         def result = service.update("4041-0", updateDTO)
 
         then:
-        1 * fairRepository.findByRegisterCodeAndActive("4041-0", Boolean.TRUE) >> Optional.of(fair)
+        1 * fairRepository.findByRegisterCode("4041-0") >> Optional.of(fair)
         1 * fairRepository.save(fairUpdated) >> fairUpdated
         0 * _
 
@@ -171,7 +168,7 @@ class FairServiceTest extends Specification {
         def result = service.updatePartial("4041-0", partialDTO)
 
         then:
-        1 * fairRepository.findByRegisterCodeAndActive("4041-0", Boolean.TRUE) >> Optional.of(fair)
+        1 * fairRepository.findByRegisterCode("4041-0") >> Optional.of(fair)
         1 * fairRepository.save(fairPartiallyUpdated) >> fairPartiallyUpdated
         0 * _
 

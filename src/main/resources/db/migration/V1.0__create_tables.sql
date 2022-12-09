@@ -20,6 +20,6 @@ CREATE TABLE public.fair
     logradouro varchar(34),
     numero varchar(5),
     bairro varchar(20),
-    referencia varchar(24),
+    referencia varchar(50),
     CONSTRAINT fair_pkey PRIMARY KEY (id)
 );

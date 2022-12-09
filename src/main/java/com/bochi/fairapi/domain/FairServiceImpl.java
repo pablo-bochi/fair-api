@@ -58,7 +58,7 @@ public class FairServiceImpl implements FairService {
     @Override
     public Fair getByRegisterCode(String registerCode) {
         log.info("Searching fair by register code={}", registerCode);
-        return fairRepository.findByRegisterCodeAndActive(registerCode, Boolean.TRUE)
+        return fairRepository.findByRegisterCode(registerCode)
                 .orElseThrow(() -> new ResourceNotFoundException("Feira não encontrada para registro: " + registerCode));
     }
 
@@ -222,7 +222,7 @@ public class FairServiceImpl implements FairService {
 
         if (partialDTO.getField().equalsIgnoreCase("NOME_FEIRA")) {
             log.info("Updating fairName");
-            fair.setLon(partialDTO.getValue());
+            fair.setFairName(partialDTO.getValue());
         }
 
         if (partialDTO.getField().equalsIgnoreCase("LOGRADOURO")) {
@@ -268,7 +268,7 @@ public class FairServiceImpl implements FairService {
      */
     private void validateUnique(Fair fair) {
         log.info("Searching fair by register code={}", fair.getRegisterCode());
-        fairRepository.findByRegisterCodeAndActive(fair.getRegisterCode(), Boolean.TRUE).ifPresent(it -> {
+        fairRepository.findByRegisterCode(fair.getRegisterCode()).ifPresent(it -> {
             throw new ResourceAlreadyExistsException("Feira já existe para o registro: " + fair.getRegisterCode());
         });
     }

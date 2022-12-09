@@ -18,6 +18,6 @@ public interface FairRepository extends JpaRepository<Fair, Long>, JpaSpecificat
      * @param active       the active
      * @return the optional
      */
-    Optional<Fair> findByRegisterCodeAndActive(String registerCode, Boolean active);
+    Optional<Fair> findByRegisterCode(String registerCode);
 
 }
