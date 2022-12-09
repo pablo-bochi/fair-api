@@ -15,41 +15,41 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FairCreateDTO {
 
-    @JsonProperty("codigo_registro")
-    private String registerCode;
-
-    @JsonProperty("longitude")
+    @JsonProperty("long")
     private String lon;
 
-    @JsonProperty("latitude")
+    @JsonProperty("lat")
     private String lat;
 
-    @JsonProperty("setor_censitario")
+    @JsonProperty("setcens")
     private String censusSector;
 
-    @JsonProperty("area_ponderada")
+    @JsonProperty("areap")
     private String wightedArea;
 
-    @JsonProperty("cod_distrito")
+    @JsonProperty("coddist")
     private String districtCode;
 
     @JsonProperty("distrito")
     private String district;
 
-    @JsonProperty("cod_subprefeitura")
+    @JsonProperty("codsubpref")
     private String subPrefectureCode;
 
-    @JsonProperty("subprefeitura")
+    @JsonProperty("subpref")
     private String subPrefecture;
 
-    @JsonProperty("regiao_5")
+    @JsonProperty("regiao5")
     private String region5;
 
-    @JsonProperty("regiao_8")
+    @JsonProperty("regiao8")
     private String region8;
 
     @JsonProperty("nome_feira")
     private String fairName;
+
+    @JsonProperty("registro")
+    private String registerCode;
 
     @JsonProperty("logradouro")
     private String address;

@@ -64,9 +64,6 @@ public class FairResponseDTO {
     @JsonProperty("referencia")
     private String refPoint;
 
-    @JsonProperty("ativo")
-    private Boolean active;
-
     /**
      * Of fair response dto.
      *
@@ -86,6 +83,7 @@ public class FairResponseDTO {
                 .region5(fair.getRegion5())
                 .region8(fair.getRegion8())
                 .fairName(fair.getFairName())
+                .registerCode(fair.getRegisterCode())
                 .address(fair.getAddress())
                 .number(fair.getNumber())
                 .neighbourhood(fair.getNeighbourhood())
