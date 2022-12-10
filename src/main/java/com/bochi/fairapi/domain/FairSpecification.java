@@ -1,19 +1,17 @@
 package com.bochi.fairapi.domain;
 
-import com.bochi.fairapi.domain.Fair;
-import com.bochi.fairapi.domain.Fair_;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
 /**
- * The type Fair specification.
+ * The Fair specifications.
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FairSpecification {
 
     /**
-     * District specification.
+     * district specification.
      *
      * @param district the district
      * @return the specification
@@ -24,9 +22,9 @@ public class FairSpecification {
     }
 
     /**
-     * Region 5 specification.
+     * region5 specification.
      *
-     * @param region5 the region 5
+     * @param region5 the region5
      * @return the specification
      */
     public static Specification<Fair> region5(String region5) {
@@ -35,7 +33,7 @@ public class FairSpecification {
     }
 
     /**
-     * Fair name specification.
+     * fairName specification.
      *
      * @param fairName the fair name
      * @return the specification
@@ -46,7 +44,7 @@ public class FairSpecification {
     }
 
     /**
-     * Neighbourhood specification.
+     * neighbourhood specification.
      *
      * @param neighbourhood the neighbourhood
      * @return the specification

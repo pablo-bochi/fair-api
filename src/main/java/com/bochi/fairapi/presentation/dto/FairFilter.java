@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The type Fair filter.
+ * The filter used to search a page of Fairs.
  */
 @Data
 @Builder

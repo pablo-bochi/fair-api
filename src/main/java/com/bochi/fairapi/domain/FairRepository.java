@@ -1,21 +1,18 @@
 package com.bochi.fairapi.domain;
 
-import com.bochi.fairapi.domain.Fair;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-
 import java.util.Optional;
 
 /**
- * The interface Fair repository.
+ * The Fair repository interface.
  */
 public interface FairRepository extends JpaRepository<Fair, Long>, JpaSpecificationExecutor<Fair> {
 
     /**
-     * Find by register code and active optional.
+     * Find optional of Fair by register code
      *
-     * @param registerCode the register code
-     * @param active       the active
+     * @param registerCode Fair's register code
      * @return the optional
      */
     Optional<Fair> findByRegisterCode(String registerCode);

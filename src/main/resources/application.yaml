@@ -32,3 +32,9 @@ spring:
 logging:
   file:
     path: logs/
+
+springdoc:
+  api-docs:
+    path: /fair-api-docs
+  swagger-ui:
+    path: /fair-api-swagger

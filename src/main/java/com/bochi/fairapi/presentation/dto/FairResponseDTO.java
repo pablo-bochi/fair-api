@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The type Fair response dto.
+ * The response DTO
  */
 @Data
 @Builder
@@ -65,10 +65,10 @@ public class FairResponseDTO {
     private String refPoint;
 
     /**
-     * Of fair response dto.
+     * Creates a response DTO of a Fair objetc
      *
      * @param fair the fair
-     * @return the fair response dto
+     * @return the response dto
      */
     public static FairResponseDTO of(Fair fair) {
         return FairResponseDTO.builder()

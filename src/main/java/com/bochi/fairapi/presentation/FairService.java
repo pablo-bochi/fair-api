@@ -8,6 +8,9 @@ import com.bochi.fairapi.presentation.dto.FairFilter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+/**
+ * The Fair service interface.
+ */
 public interface FairService {
 
     Fair create(FairCreateDTO createDTO);

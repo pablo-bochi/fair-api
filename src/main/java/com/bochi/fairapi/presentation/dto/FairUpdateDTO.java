@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The type Fair update dto.
+ * DTO containing the updated information of a fair
  */
 @Data
 @Builder
