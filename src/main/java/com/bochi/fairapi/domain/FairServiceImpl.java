@@ -32,9 +32,9 @@ public class FairServiceImpl implements FairService {
     private final FairRepository fairRepository;
 
     /**
-     * *
-     * @param createDTO DTO de criacao de feira
-     * @return Objeto feira
+     * Creates a new fair, validating if the fair isn't already created and validating its constraints
+     * @param createDTO fair creation DTO
+     * @return created Fair
      */
     @Override
     public Fair create(FairCreateDTO createDTO) {
@@ -51,9 +51,9 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
-     * *
-     * @param registerCode código de registro
-     * @return objeto feira
+     * Gets a Fair by its registerCode
+     * @param registerCode Fair's registerCode
+     * @return found Fair
      */
     @Override
     public Fair getByRegisterCode(String registerCode) {
@@ -63,9 +63,9 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
-     *
-     * @param fairName nome da feira
-     * @return objeto feira
+     * Gets a fair by its name
+     * @param fairName Fair's name
+     * @return Found Fair
      */
     @Override
     public Fair getByName(String fairName) {
@@ -75,10 +75,10 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
-     * *
-     * @param pageable objeto de paginacao
-     * @param filter filtros da feira
-     * @return pagina de feira
+     * Finds a page of Fairs filtered by district, region5, fairName and/or neighbourhood
+     * @param pageable Pagination info, such as page number and size
+     * @param filter Fair filters
+     * @return Fair page filtered
      */
     @Override
     public Page<Fair> findAllByFilter(Pageable pageable, FairFilter filter) {
@@ -114,8 +114,8 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
-     * Hard delete - remover o registro de uma feira do banco*
-     * @param registerCode Código de registro
+     * Removes a fair by its register code
+     * @param registerCode Fair's register code
      */
     @Override
     public void delete(String registerCode) {
@@ -125,10 +125,10 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
-     * *
-     * @param registerCode codigo de registro
-     * @param fairUpdateDTO DTO de atualizacao de uma feira
-     * @return objeto feira
+     * Updates a Fair by its register code
+     * @param registerCode Fair's register code
+     * @param fairUpdateDTO Update DTO with the fair updated info
+     * @return Updated Fair
      */
     @Override
     public Fair update(String registerCode, FairUpdateDTO fairUpdateDTO) {
@@ -160,10 +160,10 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
-     * *
-     * @param registerCode codigo de registro
-     * @param partialDTO DTO para determinar qual atributo sera atualizado
-     * @return objeto feira
+     * Updates a single field of the Fair
+     * @param registerCode Fair's register code
+     * @param partialDTO DTO containing the field to be updated and its value
+     * @return Updated Fair
      */
     @Override
     public Fair updatePartial(String registerCode, FairPartialDTO partialDTO) {
@@ -249,9 +249,9 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
-     * *
-     * @param e excecao
-     * @return lista formatada de erros
+     * Formats the constraint violations for better understanding of the exception message
+     * @param e ConstraintViolationException object
+     * @return Formatted errors list
      */
     private List<FieldError> formatConstrainsViolation(ConstraintViolationException e){
         Map<Object, List<String>> messages = e.getConstraintViolations().stream().collect(
@@ -263,8 +263,8 @@ public class FairServiceImpl implements FairService {
     }
 
     /**
-     * *
-     * @param fair objeto feira
+     * Validates if the given Fair object is unique by its register code
+     * @param fair Fair to be validated
      */
     private void validateUnique(Fair fair) {
         log.info("Searching fair by register code={}", fair.getRegisterCode());

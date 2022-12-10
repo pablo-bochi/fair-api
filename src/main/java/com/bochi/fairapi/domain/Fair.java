@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import static javax.persistence.GenerationType.IDENTITY;
 
 /**
- * The type Fair.
+ * The Entity Fair.
  */
 @Getter
 @Setter
@@ -78,7 +78,7 @@ public class Fair {
     private String refPoint;
 
     /**
-     * Of fair.
+     * Creates a new Fair object based on the create DTO object
      *
      * @param createDTO the create dto
      * @return the fair

@@ -6,16 +6,16 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 /**
- * The type Utils.
+ * Utils.
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Utils {
 
     /**
-     * To json string.
+     * Creates a json String from object.
      *
      * @param object the object
-     * @return the string
+     * @return the json string
      */
     public static String toJson(Object object) {
         try {

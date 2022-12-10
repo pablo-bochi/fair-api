@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The type Fair partial dto.
+ * The DTO to update a single field of a Fair
  */
 @Data
 @Builder
