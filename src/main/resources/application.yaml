@@ -7,7 +7,7 @@ spring:
   profiles:
     active: ${ENV}
   datasource:
-    url: jdbc:postgresql://${FAIR_API_DB_HOST:localhost}:${FAIR_API_DB_PORT:5433}/${FAIR_API_DB_NAME:fair-api}
+    url: jdbc:postgresql://${FAIR_API_DB_HOST:localhost}:${FAIR_API_DB_PORT:5432}/${FAIR_API_DB_NAME:fair-api}
     username: ${FAIR_API_DB_USER:admin}
     password: ${FAIR_API_DB_PASS:admin}
     jpa:
