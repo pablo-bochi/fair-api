@@ -13,6 +13,7 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'groovy'
+apply plugin: 'jacoco'
 
 group = 'com.bochi'
 version = '0.0.1-SNAPSHOT'
@@ -54,6 +55,18 @@ dependencies {
 	compileOnly group: 'org.sonarsource.sonarqube', name: 'sonar-plugin-api', version: '9.3.0.51899'
 	annotationProcessor group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.6.12.Final'
 	implementation group: 'org.hibernate.validator', name: 'hibernate-validator-annotation-processor', version: '6.0.17.Final'
+}
+
+test {
+	finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+	reports {
+		xml.required = false
+		csv.required = false
+		html.outputLocation = layout.projectDirectory.dir('test-report/')
+	}
 }
 
 tasks.named('test') {
