@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "624165d2-238a-45c1-a426-6213ad807c4e",
+		"name": "fair-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10247430"
+	},
+	"item": [
+		{
+			"name": "create fair",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8062/fair/api",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8062",
+					"path": [
+						"fair",
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search fair by filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8062/fair/api",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8062",
+					"path": [
+						"fair",
+						"api"
+					],
+					"query": [
+						{
+							"key": "district",
+							"value": "asdfa",
+							"disabled": true
+						},
+						{
+							"key": "region5",
+							"value": "asfd",
+							"disabled": true
+						},
+						{
+							"key": "fairName",
+							"value": "asdf",
+							"disabled": true
+						},
+						{
+							"key": "neighbourhood",
+							"value": "asdf",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search fair by fair name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8062/fair/api/:name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8062",
+					"path": [
+						"fair",
+						"api",
+						":name"
+					],
+					"variable": [
+						{
+							"key": "name",
+							"value": "updated"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update fair by register code",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"long\": \"-46660663\",\n    \"lat\": \"-23490605\",\n    \"setcens\": \"updated\",\n    \"areap\": \"updated\",\n    \"coddist\": \"21\",\n    \"distrito\": \"CASA VERDE\",\n    \"codsubpref\": \"4\",\n    \"subpref\": \"CASA VERDE-CACHOEIRINHA\",\n    \"regiao5\": \"Norte\",\n    \"regiao8\": \"Norte 1\",\n    \"nome_feira\": \"updated\",\n    \"logradouro\": \"RUA CESAR PENA RAMOS\",\n    \"numero\": \"592\",\n    \"bairro\": \"CASA VERDE\",\n    \"referencia\": \"ENTRE BALDOVENETI E CAPANEO\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8062/fair/api/:registerCode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8062",
+					"path": [
+						"fair",
+						"api",
+						":registerCode"
+					],
+					"variable": [
+						{
+							"key": "registerCode",
+							"value": "6024-0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partially update fair by register code",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"field\": \"nome_feira\",\n    \"value\": \"partially\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8062/fair/api/:registerCode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8062",
+					"path": [
+						"fair",
+						"api",
+						":registerCode"
+					],
+					"variable": [
+						{
+							"key": "registerCode",
+							"value": "6024-0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete fair by register code",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8062/fair/api/:registerCode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8062",
+					"path": [
+						"fair",
+						"api",
+						":registerCode"
+					],
+					"variable": [
+						{
+							"key": "registerCode",
+							"value": "6024-0"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

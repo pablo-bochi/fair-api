@@ -9,7 +9,7 @@ services:
       PORT: 8062
       ENV: local
       FAIR_API_DB_HOST: fair-api-db
-      FAIR_API_DB_PORT: 5433
+      FAIR_API_DB_PORT: 5432
       FAIR_API_DB_NAME: fair-api
       FAIR_API_DB_USER: admin
       FAIR_API_DB_PASS: admin
@@ -17,7 +17,7 @@ services:
     image: postgres:13-alpine
     container_name: fair-api-db
     ports:
-      - "5433:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin

@@ -1,4 +1,4 @@
-FROM openjdk15-slim
+FROM openjdk:15-slim as BUILD_IMAGE
 
 MAINTAINER Pablo Bochi - pablovilelabochi@gmail.com
 
@@ -10,10 +10,10 @@ COPY ./build.gradle ./gradlew ./gradlew.bat $APP_HOME
 COPY gradle $APP_HOME/gradle
 COPY ./src $APP_HOME/src/
 
-RUN ./gradlew clean build -x test
+RUN ./gradlew clean build
 
 FROM openjdk:15-slim
 WORKDIR /root/
 COPY --from=BUILD_IMAGE '/root/fair-api/build/libs/fair-api-0.0.1-SNAPSHOT.jar' '/app/fair-api.jar'
-EXPOSE $PORT
+EXPOSE 8062
 ENTRYPOINT ["java","-jar","/app/fair-api.jar"]
