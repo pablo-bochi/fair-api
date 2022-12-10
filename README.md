@@ -55,8 +55,18 @@ As variáveis essenciais para o funcionamento da aplicação são:
 4) Execute o script `run.sh`:
 
 ```shell
-source run.sh
+source run_app.sh
 ```
+
+#### Testes unitários e de integração
+
+Para rodar os testes unitários e de integração desenvolvidos nessa aplicação, basta executar o script `run_tests.sh`:
+
+```shell
+source run_tests.sh
+```
+
+Após a execução dos testes, o relatório de cobertura de testes pode ser visualizado no diretório `test-report`. Basta abrir o arquivo `index.html` em um navegador.
 
 ## Modelagem do banco de dados
 
