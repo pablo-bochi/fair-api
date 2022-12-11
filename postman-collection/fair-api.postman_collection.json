@@ -82,12 +82,12 @@
 			"response": []
 		},
 		{
-			"name": "search fair by fair name",
+			"name": "search fair by register code",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8062/fair/api/:name",
+					"raw": "http://localhost:8062/fair/api/:registerCode",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -96,12 +96,12 @@
 					"path": [
 						"fair",
 						"api",
-						":name"
+						":registerCode"
 					],
 					"variable": [
 						{
-							"key": "name",
-							"value": "updated"
+							"key": "registerCode",
+							"value": "6024-0"
 						}
 					]
 				}

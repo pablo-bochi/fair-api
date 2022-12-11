@@ -16,9 +16,8 @@ import java.util.List;
 public interface FairService {
 
     Fair create(FairCreateDTO createDTO);
-    List<Fair> saveAll(List<Fair> fairs);
+    void saveAll(List<Fair> fairs);
     Fair getByRegisterCode(String registerCode);
-    Fair getByName(String fairName);
     void delete(String registerCode);
     Fair update(String registerCode, FairUpdateDTO fairUpdateDTO);
     Fair updatePartial(String registerCode, FairPartialDTO partialDTO);

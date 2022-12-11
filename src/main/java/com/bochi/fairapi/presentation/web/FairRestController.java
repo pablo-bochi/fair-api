@@ -43,14 +43,14 @@ public class FairRestController {
     }
 
     /**
-     * Finds a fair by name.
+     * Finds a fair by register code.
      *
-     * @param name the name
+     * @param registerCode the register code
      * @return the fair response dto
      */
     @Operation(
-            summary = "Busca uma Feira pelo nome",
-            description = "Busca uma feira baseada no campo nome",
+            summary = "Busca uma Feira pelo registro",
+            description = "Busca uma feira baseada no campo registro",
             responses = {
                     @ApiResponse(description = "Success", responseCode = "201"),
                     @ApiResponse(description = "Entity not found", responseCode = "404", content = @Content),
@@ -58,9 +58,9 @@ public class FairRestController {
             }
     )
     @ResponseStatus(OK)
-    @GetMapping(value = "/{name}", produces = "application/json")
-    FairResponseDTO findByName(@PathVariable String name) {
-        return FairResponseDTO.of(fairService.getByName(name));
+    @GetMapping(value = "/{registerCode}", produces = "application/json")
+    FairResponseDTO findByRegisterCode(@PathVariable String registerCode) {
+        return FairResponseDTO.of(fairService.getByRegisterCode(registerCode));
     }
 
     /**

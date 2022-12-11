@@ -58,11 +58,11 @@ class FairRestControllerTest extends Specification {
 
     def "should find fair by name with success" () {
         when:
-        def response = mvc.perform(get(baseUrl + "/{fairName}", "VILA FORMOSA")
+        def response = mvc.perform(get(baseUrl + "/{registerCode}", "4041-0")
                 .contentType(MediaType.APPLICATION_JSON))
 
         then:
-        1 * fairService.getByName("VILA FORMOSA") >> fair
+        1 * fairService.getByRegisterCode("4041-0") >> fair
         0 * _
 
         and:
