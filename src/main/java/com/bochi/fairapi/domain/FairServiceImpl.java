@@ -15,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
@@ -37,6 +39,7 @@ public class FairServiceImpl implements FairService {
      * @return created Fair
      */
     @Override
+    @Transactional
     public Fair create(FairCreateDTO createDTO) {
         Fair fair = Fair.of(createDTO);
         log.info("Validating unique fair for register={}", createDTO.getRegisterCode());
@@ -48,6 +51,17 @@ public class FairServiceImpl implements FairService {
             List<FieldError> errors = formatConstrainsViolation(e);
             throw new InvalidInputException(errors);
         }
+    }
+
+    /**
+     * Saves a list of fair
+     * @param fairs fair list
+     * @return saved fair list
+     */
+    @Override
+    @Transactional
+    public List<Fair> saveAll(List<Fair> fairs) {
+        return fairRepository.saveAll(fairs);
     }
 
     /**
@@ -118,6 +132,7 @@ public class FairServiceImpl implements FairService {
      * @param registerCode Fair's register code
      */
     @Override
+    @Transactional
     public void delete(String registerCode) {
         Fair fair = this.getByRegisterCode(registerCode);
         log.info("Deleting fair with register code={}", registerCode);
@@ -131,6 +146,7 @@ public class FairServiceImpl implements FairService {
      * @return Updated Fair
      */
     @Override
+    @Transactional
     public Fair update(String registerCode, FairUpdateDTO fairUpdateDTO) {
         Fair fair = this.getByRegisterCode(registerCode);
         assert fair != null;
@@ -166,6 +182,7 @@ public class FairServiceImpl implements FairService {
      * @return Updated Fair
      */
     @Override
+    @Transactional
     public Fair updatePartial(String registerCode, FairPartialDTO partialDTO) {
         Fair fair = this.getByRegisterCode(registerCode);
         assert fair != null;
@@ -205,7 +222,7 @@ public class FairServiceImpl implements FairService {
             fair.setSubPrefectureCode(partialDTO.getValue());
         }
 
-        if (partialDTO.getField().equalsIgnoreCase("SUBPREF")) {
+        if (partialDTO.getField().equalsIgnoreCase("SUBPREFE")) {
             log.info("Updating subPrefecture");
             fair.setSubPrefecture(partialDTO.getValue());
         }

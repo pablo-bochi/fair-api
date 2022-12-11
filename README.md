@@ -5,7 +5,7 @@ Esta API foi desenvolvida em Java com o framework Spring Boot para expor os dado
 Estes dados estão disponíveis para download no [site da Prefeitura de São Paulo](http://www.prefeitura.sp.gov.br/cidade/secretarias/upload/chamadas/feiras_livres_1429113213.zip).
 
 Para essa aplicação, os dados presentes em `DEINFO_AB_FEIRASLIVRES_2014.csv` foram utilizados como base para construção da base de dados.
-Os dados presentes em `DEINFO_AB_FEIRASLIVRES_2014_Variаveis.csv` serviram como interpretação dos dados da tabela anterior.
+Os dados presentes em `DEINFO_AB_FEIRASLIVRES_2014_Variаveis.csv` serviram como base para interpretação dos dados sobre as feiras livres.
 
 ## Dependências
 
@@ -58,6 +58,8 @@ As variáveis essenciais para o funcionamento da aplicação são:
 source run_app.sh
 ```
 
+Obs.: O último passo da construção da aplicação é a importação do arquivo `DEINFO_AB_FEIRASLIVRES_2014.csv`.
+
 #### Testes unitários e de integração
 
 Para rodar os testes unitários e de integração desenvolvidos nessa aplicação, basta executar o script `run_tests.sh`:
@@ -92,6 +94,8 @@ A Swagger-ui pode ser acessada através deste [link](http://localhost:8062/fair-
 
 Para testar as APIs expostas na aplicação, podemos utilizar o [Postman](https://www.postman.com/). A coleção com as APIs configuradas pode ser acessada em `postman-collection/fair-api.postman_collection.json`.
 
+Com a aplicação em execução, as requisições serão feitas no endereço `http://localhost:8062`.
+
 ### POST
 
 Criação de uma nova feira.
@@ -109,7 +113,7 @@ Corpo da requisição:
     "coddist": "21",
     "distrito": "CASA VERDE",
     "codsubpref": "4",
-    "subpref": "CASA VERDE-CACHOEIRINHA",
+    "subprefe": "CASA VERDE-CACHOEIRINHA",
     "regiao5": "Norte",
     "regiao8": "Norte 1",
     "nome_feira": "CARMEM",
@@ -129,7 +133,7 @@ Corpo da resposta:
     "coddist": "21",
     "distrito": "CASA VERDE",
     "codsubpref": "4",
-    "subpref": "CASA VERDE-CACHOEIRINHA",
+    "subprefe": "CASA VERDE-CACHOEIRINHA",
     "regiao5": "Norte",
     "regiao8": "Norte 1",
     "nome_feira": "CARMEM",
@@ -156,7 +160,7 @@ curl --location --request POST 'http://localhost:8062/fair/api' \
 "coddist": "21",
 "distrito": "CASA VERDE",
 "codsubpref": "4",
-"subpref": "CASA VERDE-CACHOEIRINHA",
+"subprefe": "CASA VERDE-CACHOEIRINHA",
 "regiao5": "Norte",
 "regiao8": "Norte 1",
 "nome_feira": "CARMEM",
@@ -195,7 +199,7 @@ Corpo da resposta:
         "coddist": "21",
         "distrito": "CASA VERDE",
         "codsubpref": "4",
-        "subpref": "CASA VERDE-CACHOEIRINHA",
+        "subprefe": "CASA VERDE-CACHOEIRINHA",
         "regiao5": "Norte",
         "regiao8": "Norte 1",
         "nome_feira": "CARMEM",
@@ -261,7 +265,7 @@ Corpo da resposta:
     "coddist": "21",
     "distrito": "CASA VERDE",
     "codsubpref": "4",
-    "subpref": "CASA VERDE-CACHOEIRINHA",
+    "subprefe": "CASA VERDE-CACHOEIRINHA",
     "regiao5": "Norte",
     "regiao8": "Norte 1",
     "nome_feira": "CARMEM",
@@ -301,7 +305,7 @@ Corpo da requisição:
     "coddist": "21",
     "distrito": "CASA VERDE",
     "codsubpref": "4",
-    "subpref": "CASA VERDE-CACHOEIRINHA",
+    "subprefe": "CASA VERDE-CACHOEIRINHA",
     "regiao5": "Norte",
     "regiao8": "Norte 1",
     "nome_feira": "PAULA",
@@ -320,7 +324,7 @@ Corpo da resposta:
     "coddist": "21",
     "distrito": "CASA VERDE",
     "codsubpref": "4",
-    "subpref": "CASA VERDE-CACHOEIRINHA",
+    "subprefe": "CASA VERDE-CACHOEIRINHA",
     "regiao5": "Norte",
     "regiao8": "Norte 1",
     "nome_feira": "PAULA",
@@ -348,7 +352,7 @@ curl --location --request PUT 'http://localhost:8062/fair/api/6024-0' \
     "coddist": "21",
     "distrito": "CASA VERDE",
     "codsubpref": "4",
-    "subpref": "CASA VERDE-CACHOEIRINHA",
+    "subprefe": "CASA VERDE-CACHOEIRINHA",
     "regiao5": "Norte",
     "regiao8": "Norte 1",
     "nome_feira": "PAULA",
@@ -383,7 +387,7 @@ Corpo da resposta:
     "coddist": "21",
     "distrito": "CASA VERDE",
     "codsubpref": "4",
-    "subpref": "CASA VERDE-CACHOEIRINHA",
+    "subprefe": "CASA VERDE-CACHOEIRINHA",
     "regiao5": "Norte",
     "regiao8": "Norte 1",
     "nome_feira": "PAULA",

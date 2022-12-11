@@ -38,3 +38,6 @@ springdoc:
     path: /fair-api-docs
   swagger-ui:
     path: /fair-api-swagger
+
+import-data:
+  file-path: ${CSV_FILE_LOCATION:src/main/resources/db/data/DEINFO_AB_FEIRASLIVRES_2014.csv}

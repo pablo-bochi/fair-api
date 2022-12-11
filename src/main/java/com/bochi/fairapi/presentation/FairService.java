@@ -8,12 +8,15 @@ import com.bochi.fairapi.presentation.dto.FairFilter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * The Fair service interface.
  */
 public interface FairService {
 
     Fair create(FairCreateDTO createDTO);
+    List<Fair> saveAll(List<Fair> fairs);
     Fair getByRegisterCode(String registerCode);
     Fair getByName(String fairName);
     void delete(String registerCode);

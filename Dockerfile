@@ -14,6 +14,8 @@ RUN ./gradlew clean build
 
 FROM openjdk:15-slim
 WORKDIR /root/
+COPY --from=BUILD_IMAGE '/root/fair-api/build/resources/main/db/data/DEINFO_AB_FEIRASLIVRES_2014.csv' '/app/db/data/DEINFO_AB_FEIRASLIVRES_2014.csv'
+ENV CSV_FILE_LOCATION=/app/db/data/DEINFO_AB_FEIRASLIVRES_2014.csv
 COPY --from=BUILD_IMAGE '/root/fair-api/build/libs/fair-api-0.0.1-SNAPSHOT.jar' '/app/fair-api.jar'
 EXPOSE 8062
 ENTRYPOINT ["java","-jar","/app/fair-api.jar"]
