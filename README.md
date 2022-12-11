@@ -249,12 +249,12 @@ curl --location --request GET 'http://localhost:8062/fair/api?district=CARANDIRU
 
 ### GET 
 
-Busca uma feira pelo nome.
+Busca uma feira pelo registro.
 
 ```yaml
-Caminho: /fair/api/{fairName}
+Caminho: /fair/api/{registerCode}
 Método: GET
-Parâmetros: fairName - nome da feira
+Parâmetros: registerCode - registro da feira
 
 Corpo da resposta:
 {
@@ -283,7 +283,7 @@ HttpStatus:
 
 #### Exemplo em curl
 ````shell
-curl --location --request GET 'http://localhost:8062/fair/api/CARMEM' \
+curl --location --request GET 'http://localhost:8062/fair/api/6024-0' \
 ````
 
 ### PUT 

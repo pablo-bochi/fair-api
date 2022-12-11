@@ -56,12 +56,11 @@ public class FairServiceImpl implements FairService {
     /**
      * Saves a list of fair
      * @param fairs fair list
-     * @return saved fair list
      */
     @Override
     @Transactional
-    public List<Fair> saveAll(List<Fair> fairs) {
-        return fairRepository.saveAll(fairs);
+    public void saveAll(List<Fair> fairs) {
+        fairRepository.saveAll(fairs);
     }
 
     /**
@@ -74,18 +73,6 @@ public class FairServiceImpl implements FairService {
         log.info("Searching fair by register code={}", registerCode);
         return fairRepository.findByRegisterCode(registerCode)
                 .orElseThrow(() -> new ResourceNotFoundException("Feira não encontrada para registro: " + registerCode));
-    }
-
-    /**
-     * Gets a fair by its name
-     * @param fairName Fair's name
-     * @return Found Fair
-     */
-    @Override
-    public Fair getByName(String fairName) {
-        log.info("Searching fair by name={}", fairName);
-        return fairRepository.findOne(fairName(fairName))
-                .orElseThrow(() -> new ResourceNotFoundException("Feira não encontrada para o nome: " + fairName));
     }
 
     /**
