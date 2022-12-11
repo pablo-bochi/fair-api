@@ -1,4 +1,4 @@
-package com.bochi.fairapi.utils;
+package com.bochi.fairapi.helper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

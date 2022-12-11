@@ -36,7 +36,7 @@ public class FairCreateDTO {
     @JsonProperty("codsubpref")
     private String subPrefectureCode;
 
-    @JsonProperty("subpref")
+    @JsonProperty("subprefe")
     private String subPrefecture;
 
     @JsonProperty("regiao5")

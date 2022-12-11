@@ -1,6 +1,6 @@
 package com.bochi.fairapi.core.exception;
 
-import com.bochi.fairapi.utils.Utils;
+import com.bochi.fairapi.helper.Utils;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

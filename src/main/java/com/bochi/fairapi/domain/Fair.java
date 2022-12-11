@@ -50,7 +50,7 @@ public class Fair {
     @Column(name = "codsubpref")
     private String subPrefectureCode;
 
-    @Column(name = "subpref")
+    @Column(name = "subprefe")
     private String subPrefecture;
 
     @Column(name = "regiao5")
