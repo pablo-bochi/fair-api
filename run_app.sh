@@ -17,7 +17,9 @@ function build_application() {
 
 function build_docker_image() {
     echo "Building docker image..."
-    docker image build -t fair-api -f Dockerfile .
+    docker image build -t fair-api -f Dockerfile \
+    --build-arg DEFAULT_USER=$DEFAULT_USER \
+    --build-arg DEFAULT_PASSWORD=$DEFAULT_PASSWORD .
 }
 
 function up_app_container() {
@@ -25,11 +27,12 @@ function up_app_container() {
     docker-compose up
 }
 
+echo "Exporting variables"
+source .env
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
 
 time (down_app_container)
 time (delete_latest_docker_image)
-time (build_application)
 time (build_docker_image)
 time (up_app_container)

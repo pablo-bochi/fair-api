@@ -43,7 +43,7 @@ class FairRestControllerTest extends Specification {
 
     def "should create fair with success" () {
         when:
-        def response = mvc.perform(post(baseUrl)
+        def response = mvc.perform(post(baseUrl + "/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(createDTO)))
 

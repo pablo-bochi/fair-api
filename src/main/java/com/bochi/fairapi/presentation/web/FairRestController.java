@@ -37,7 +37,7 @@ public class FairRestController {
             }
     )
     @ResponseStatus(CREATED)
-    @PostMapping(produces = "application/json")
+    @PostMapping(value = "/", produces = "application/json")
     FairResponseDTO create(@RequestBody FairCreateDTO createDTO) {
         return FairResponseDTO.of(fairService.create(createDTO));
     }

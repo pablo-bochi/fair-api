@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"long\": \"-46660663\",\n    \"lat\": \"-23490605\",\n    \"setcens\": \"355030821000044\",\n    \"areap\": \"3550308005062\",\n    \"coddist\": \"21\",\n    \"distrito\": \"CASA VERDE\",\n    \"codsubpref\": \"4\",\n    \"subprefe\": \"CASA VERDE-CACHOEIRINHA\",\n    \"regiao5\": \"Norte\",\n    \"regiao8\": \"Norte 1\",\n    \"nome_feira\": \"CARMEM\",\n    \"registro\": \"6024-0\",\n    \"logradouro\": \"RUA CESAR PENA RAMOS\",\n    \"numero\": \"592\",\n    \"bairro\": \"CASA VERDE\",\n    \"referencia\": \"ENTRE BALDOVENETI E CAPANEO\"\n}",
+					"raw": "{\n    \"long\": \"-46660663\",\n    \"lat\": \"-23490605\",\n    \"setcens\": \"355030821000044\",\n    \"areap\": \"3550308005062\",\n    \"coddist\": \"21\",\n    \"distrito\": \"CASA VERDE\",\n    \"codsubpref\": \"4\",\n    \"subprefe\": \"CASA VERDE-CACHOEIRINHA\",\n    \"regiao5\": \"Norte\",\n    \"regiao8\": \"Norte 1\",\n    \"nome_feira\": \"CARMEM\",\n    \"registro\": \"6024-3\",\n    \"logradouro\": \"RUA CESAR PENA RAMOS\",\n    \"numero\": \"592\",\n    \"bairro\": \"CASA VERDE\",\n    \"referencia\": \"ENTRE BALDOVENETI E CAPANEO\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,7 +21,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8062/fair/api",
+					"raw": "http://localhost:8062/fair/api/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -29,7 +29,8 @@
 					"port": "8062",
 					"path": [
 						"fair",
-						"api"
+						"api",
+						""
 					]
 				}
 			},
@@ -41,7 +42,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8062/fair/api?district=CARANDIRU&region5=VL MADA&fairName=DEOLA FRESCA&neighbourhood=VL PRUDENTE&page=1&size=10",
+					"raw": "http://localhost:8062/fair/api?district=CARANDIRU&region5=VL MADA&fairName=DEOLA FRESCA&neighbourhood=SAO FRANCISCO&page=0&size=10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -66,11 +67,11 @@
 						},
 						{
 							"key": "neighbourhood",
-							"value": "VL PRUDENTE"
+							"value": "SAO FRANCISCO"
 						},
 						{
 							"key": "page",
-							"value": "1"
+							"value": "0"
 						},
 						{
 							"key": "size",
@@ -215,6 +216,41 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "senha-configurada-no-dotenv",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "user",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
