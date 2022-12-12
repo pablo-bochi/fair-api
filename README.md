@@ -47,10 +47,12 @@ docker login
 
 3) Configure as variáveis de ambiente:
 
-Para o funcionamento correto da aplicação é necessária a configuração de algumas variáveis de ambiente.
-Para isto, basta editar o arquivo `.env` com os valores das variáveis pré-preenchidas no arquivo.
+Para o funcionamento correto da aplicação é necessária a configuração das variáveis de ambiente de usuário e senha para acesso as APIs.
+Para isto, basta editar o arquivo `.env` e preencher os valores do nome do usuário e a sua senha. Lembrando que esses dados serão utilizados para realizar as requisições.
 
-As variáveis essenciais para o funcionamento da aplicação são:
+As variáveis são:
+- DEFAULT_USER
+- DEFAULT_PASSWORD 
 
 4) Execute o script `run.sh`:
 
@@ -94,7 +96,11 @@ A Swagger-ui pode ser acessada através deste [link](http://localhost:8062/fair-
 
 Para testar as APIs expostas na aplicação, podemos utilizar o [Postman](https://www.postman.com/). A coleção com as APIs configuradas pode ser acessada em `postman-collection/fair-api.postman_collection.json`.
 
-Com a aplicação em execução, as requisições serão feitas no endereço `http://localhost:8062`.
+As APIs estão configuradas para serem acessadas com o usuário e senha definidos no arquivo `.env`. Com isso, no Postman, basta definir uma Basic Auth e preencher os campos com usuário e senha.
+
+Para acesso das APIs com `curl`, é necessário adicionar um header na requisição: `--header 'Authorization: Basic dXNlcjpmYWlyYXBp'`, onde o código são as credenciais criptografadas em Base64 (username:password).
+
+As requisições nas APIs serão feitas no endereço `http://localhost:8062`.
 
 ### POST
 
@@ -150,25 +156,26 @@ HttpStatus:
 
 #### Exemplo em curl
 ````shell
-curl --location --request POST 'http://localhost:8062/fair/api' \
+curl --location --request POST 'http://localhost:8062/fair/api/' \
+--header 'Authorization: Basic dXNlcjpmYWlyYXBp' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"long": "-46660663",
-"lat": "-23490605",
-"setcens": "355030821000044",
-"areap": "3550308005062",
-"coddist": "21",
-"distrito": "CASA VERDE",
-"codsubpref": "4",
-"subprefe": "CASA VERDE-CACHOEIRINHA",
-"regiao5": "Norte",
-"regiao8": "Norte 1",
-"nome_feira": "CARMEM",
-"registro": "6024-0",
-"logradouro": "RUA CESAR PENA RAMOS",
-"numero": "592",
-"bairro": "CASA VERDE",
-"referencia": "ENTRE BALDOVENETI E CAPANEO"
+    "long": "-46660663",
+    "lat": "-23490605",
+    "setcens": "355030821000044",
+    "areap": "3550308005062",
+    "coddist": "21",
+    "distrito": "CASA VERDE",
+    "codsubpref": "4",
+    "subprefe": "CASA VERDE-CACHOEIRINHA",
+    "regiao5": "Norte",
+    "regiao8": "Norte 1",
+    "nome_feira": "CARMEM",
+    "registro": "6024-3",
+    "logradouro": "RUA CESAR PENA RAMOS",
+    "numero": "592",
+    "bairro": "CASA VERDE",
+    "referencia": "ENTRE BALDOVENETI E CAPANEO"
 }'
 ````
 
@@ -244,7 +251,8 @@ HttpStatus:
 
 #### Exemplo em curl
 ````shell
-curl --location --request GET 'http://localhost:8062/fair/api?district=CARANDIRU&region5=VL MADA&fairName=DEOLA FRESCA&neighbourhood=VL PRUDENTE&page=1&size=10' \
+curl --location --request GET 'http://localhost:8062/fair/api?district=CARANDIRU&region5=VL MADA&fairName=DEOLA FRESCA&neighbourhood=SAO FRANCISCO&page=0&size=10' \
+--header 'Authorization: Basic dXNlcjpmYWlyYXBp' 
 ````
 
 ### GET 
@@ -284,6 +292,7 @@ HttpStatus:
 #### Exemplo em curl
 ````shell
 curl --location --request GET 'http://localhost:8062/fair/api/6024-0' \
+--header 'Authorization: Basic dXNlcjpmYWlyYXBp'
 ````
 
 ### PUT 
@@ -344,6 +353,7 @@ HttpStatus:
 ````shell
 curl --location --request PUT 'http://localhost:8062/fair/api/6024-0' \
 --header 'Content-Type: application/json' \
+--header 'Authorization: Basic dXNlcjpmYWlyYXBp' \
 --data-raw '{
     "long": "-46660663",
     "lat": "-23490605",
@@ -407,6 +417,7 @@ HttpStatus:
 ````shell
 curl --location --request PATCH 'http://localhost:8062/fair/api/6024-0' \
 --header 'Content-Type: application/json' \
+--header 'Authorization: Basic dXNlcjpmYWlyYXBp' \
 --data-raw '{
     "field": "nome_feira",
     "value": "partially"
@@ -431,5 +442,6 @@ HttpStatus:
 #### Exemplo em curl
 ````shell
 curl --location --request DELETE 'http://localhost:8062/fair/api/6024-0' \
+--header 'Authorization: Basic dXNlcjpmYWlyYXBp' \
 --data-raw ''
 ````

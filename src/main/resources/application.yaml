@@ -41,3 +41,7 @@ springdoc:
 
 import-data:
   file-path: ${CSV_FILE_LOCATION:src/main/resources/db/data/DEINFO_AB_FEIRASLIVRES_2014.csv}
+
+basic-credentials:
+  default-user: ${DEFAULT_USER}
+  default-password: ${DEFAULT_PASSWORD}
