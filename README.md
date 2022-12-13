@@ -72,6 +72,34 @@ source run_tests.sh
 
 Após a execução dos testes, o relatório de cobertura de testes pode ser visualizado no diretório `test-report`. Basta abrir o arquivo `index.html` em um navegador.
 
+#### Logs
+
+A aplicação salva logs em um arquivo que fica disponível no diretório `logs/` na raíz do projeto. Como o projeto é executado dentro de um container Docker, para acessar esses logs precisamos executar alguns passos.
+
+1) Em um terminal, liste os containers que estão sendo executados:
+
+```shell
+docker container ls
+```
+
+2) Copie o ID do container da aplicação (o que tem o nome `fair-api`), e execute o seguinte comando para acessar o bash do container:
+
+```shell
+docker exec -it <ID_DO_CONTAINER> 'bash'
+```
+
+3) Uma vez no terminal do container, basta acessar a pasta `logs/`:
+
+```shell
+cd logs/
+```
+
+4) E, por fim, abrir o arquivo:
+
+```shell
+cat spring.log
+```
+
 ## Modelagem do banco de dados
 
 A estrutura do banco de dados foi definida a partir do arquivo `DEINFO_AB_FEIRASLIVRES_2014_Variáveis.csv`.
